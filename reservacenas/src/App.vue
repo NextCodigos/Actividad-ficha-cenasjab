@@ -1,8 +1,14 @@
 <template>
   <!-- no se modifica elcontador suma 1 -->
   <h2>Cena {{ contador + 1 }}
-  con el rey godo {{ rey }}</h2>
-  
+    con el rey godo {{ rey }}</h2>
+
+  <h3 class="precio">Precio: {{ productos[contador].precio }}€</h3>
+
+  <!-- Cuando se cumpla esta condicion -->
+  <div v-if="productos[contador].finDeSemana===true" class="soloFinesDeSemana dias">(Solo fines de semana)</div>
+  <div v-else class="dias todosLosDias">(De lunes a Domingo)</div>
+
   <!-- v-bind abreviado -->
   <img :src="imagen" alt="">
 
@@ -49,5 +55,22 @@ const imagen = computed(() => {
 </script>
 
 <style scoped>
+.todosLosDias {
+  background-color: green;
+}
+
+.soloFinesDeSemana {
+  background-color: red;
+}
+
+.dias {
+  color: white;
+  padding: 4px 17px;
+  font-size: 0.9em;
+  border-radius: 4px;
+  margin: 5px 0 10px;
+  /* Eñ ancho se adaptara al contenido */
+  display: inline-block;
+}
 
 </style>
