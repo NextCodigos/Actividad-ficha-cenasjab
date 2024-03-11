@@ -8,6 +8,13 @@
   <!-- Cuando se cumpla esta condicion -->
   <div v-if="productos[contador].finDeSemana===true" class="soloFinesDeSemana dias">(Solo fines de semana)</div>
   <div v-else class="dias todosLosDias">(De lunes a Domingo)</div>
+  
+  <div v-if="productos[contador].precio<100" class="oferta">
+    <div>Ahorra un 10% dto:
+      <!-- Propiedad computada -->
+      {{ nuevoPrecio }}€</div>
+      <img src="../public//rey_incognito.png" alt="rey godo en descuento" />
+    </div>
 
   <!-- v-bind abreviado -->
   <img :src="imagen" alt="">
@@ -40,15 +47,21 @@ const rey=computed(()=>{
   const elNombre=productos[contador.value].nombre.toLowerCase()
 
   return elNombre.substring(0, 1).toUpperCase() + elNombre.substring(1)
+})
 
 
   
-})
 
 // Propiedad computada
+
 const imagen = computed(() => {
   // return ruta+productos[contador.value].nombre.toLowerCase()+'.png'
   return `${ruta}${productos[contador.value].nombre.toLowerCase()}.png`
+})
+
+const nuevoPrecio = computed(() => {
+                                                   //2decimales
+  return (productos[contador.value].precio / 1.10).toFixed(2)
 })
 
 // import HelloWorld from './components/HelloWorld.vue'
@@ -71,6 +84,10 @@ const imagen = computed(() => {
   margin: 5px 0 10px;
   /* Eñ ancho se adaptara al contenido */
   display: inline-block;
+}
+.oferta img {
+  width: 65px;
+  margin: 12px 5px;
 }
 
 </style>
