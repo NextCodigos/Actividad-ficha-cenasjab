@@ -90,6 +90,81 @@ import { productos } from './datos.js';
 ///////////////////////////////////////////////
 ///////////////////////////////////////////////
 
+Elimino contenido css archivo dentro de carpeta assets main.css
+
+Contador:
+Aplico limite cuando llega al ultimo numero 7 y empieza al 1:
+
+
+<template>
+  <!-- no se modifica elcontador suma 1 -->
+  <h2>Cena {{ contador + 1 }}</h2>
+  <!-- v-on -->
+  <!-- Asi muestra al final total no el numero 7 -->
+  <!-- <button @:click="siguiente">Siguiente ({{ contador +1}}/ total)</button> -->
+  <button @:click="siguiente">Siguiente ({{ contador +1}}/ {{total}})</button>
+
+</template>
+
+<script setup>
+
+import { ref } from "vue"
+import { productos } from './datos.js';
+// Importamos valores de archivo desctruturamos para acceder datos
+const contador=ref(0)
+const total = productos.length;
+
+const siguiente = () => {
+  contador.value++
+  if (contador.value >= total) {
+    contador.value = 0
+  }
+}
+// import HelloWorld from './components/HelloWorld.vue'
+</script>
+
+<style scoped>
+
+</style>
+
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+
+Añado despues de Cena 1 con el rey godo ATANAGILDO  (tengo que cambiar ultimo nombre 1º letra mayus y demas minusculas):
+
+App.vue
+
+<template>
+  <!-- no se modifica elcontador suma 1 -->
+  <h2>Cena {{ contador + 1 }}
+  con el rey godo {{ productos[contador].nombre }}</h2>
+  <!-- v-on -->
+  <!-- Asi muestra al final total no el numero 7 -->
+  <!-- <button @:click="siguiente">Siguiente ({{ contador +1}}/ total)</button> -->
+  <button @:click="siguiente">Siguiente ({{ contador +1}}/ {{total}})</button>
+
+</template>
+
+<script setup>
+
+import { ref } from "vue"
+import { productos } from './datos.js';
+// Importamos valores de archivo desctruturamos para acceder datos
+const contador=ref(0)
+const total = productos.length;
+
+const siguiente = () => {
+  contador.value++
+  if (contador.value >= total) {
+    contador.value = 0
+  }
+}
+// import HelloWorld from './components/HelloWorld.vue'
+</script>
+
+<style scoped>
+
+</style>
 
 
 
@@ -98,15 +173,105 @@ import { productos } from './datos.js';
 ///////////////////////////////////////////////
 ///////////////////////////////////////////////
 
+Añado despues de Cena 1 con el rey godo ATANAGILDO  (cambio ultimo nombre 1º letra mayus y demas minusculas):
+Creamos propiedad computada para poner 1º letra rey mayus y demas minusculas:
+
+App.vue
+
+PASO 1:
+
+<template>
+  <!-- no se modifica elcontador suma 1 -->
+  <h2>Cena {{ contador + 1 }}
+  con el rey godo {{ rey }}</h2>
+  <!-- v-on -->
+  <!-- Asi muestra al final total no el numero 7 -->
+  <!-- <button @:click="siguiente">Siguiente ({{ contador +1}}/ total)</button> -->
+  <button @:click="siguiente">Siguiente ({{ contador +1}}/ {{total}})</button>
+
+</template>
+
+<script setup>
+
+import { ref } from "vue"
+import { productos } from './datos.js';
+// Importamos valores de archivo desctruturamos para acceder datos
+const contador=ref(0)
+const total = productos.length;
+
+const siguiente = () => {
+  contador.value++
+  if (contador.value >= total) {
+    contador.value = 0
+  }
+}
+
+const rey=computed(()=>{
+  // Pongo misnuscula el nombre
+  const elNombre=productos[contador].nombre.toLowerCase()
+  // Quiero obtener desde el caracter 0 hasta la 2ª letra
+  // sin seleccionar esta y pongo mayuscula la 1ªletra'
+  elNombre.substring(0,1).toUpperCase()
+  // Desde la 2ª letra hasta el final
+  elNombre.substring(1)
+  return
+})
+// import HelloWorld from './components/HelloWorld.vue'
+</script>
+
+<style scoped>
+
+</style>
+
+//////////////////////////7
+
+PASO 2
+
+<template>
+  <!-- no se modifica elcontador suma 1 -->
+  <h2>Cena {{ contador + 1 }}
+  con el rey godo {{ rey }}</h2>
+  <!-- v-on -->
+  <!-- Asi muestra al final total no el numero 7 -->
+  <!-- <button @:click="siguiente">Siguiente ({{ contador +1}}/ total)</button> -->
+  <button @:click="siguiente">Siguiente ({{ contador +1}}/ {{total}})</button>
+
+</template>
+
+<script setup>
+
+import { ref,computed } from "vue"
+import { productos } from './datos.js';
+// Importamos valores de archivo desctruturamos para acceder datos
+const contador=ref(0)
+const total = productos.length;
+
+const siguiente = () => {
+  contador.value++
+  if (contador.value >= total) {
+    contador.value = 0
+  }
+}
+
+const rey=computed(()=>{
+  // Pongo misnuscula el nombre
+  const elNombre=productos[contador.value].nombre.toLowerCase()
+
+  return elNombre.substring(0, 1).toUpperCase() + elNombre.substring(1)
 
 
+  
+})
+// import HelloWorld from './components/HelloWorld.vue'
+</script>
 
+<style scoped>
 
+</style>
 
-///////////////////////////////////////////////
-///////////////////////////////////////////////
+/////////////////////
 
-
+PASO 3:
 
 
 
