@@ -13,7 +13,7 @@
     <div>Ahorra un 10% dto:
       <!-- Propiedad computada -->
       {{ nuevoPrecio }}€</div>
-      <img src="../public//rey_incognito.png" alt="rey godo en descuento" />
+      <img src="../public/rey_incognito.png" alt="rey godo en descuento" />
     </div>
 
   <!-- v-bind abreviado -->
